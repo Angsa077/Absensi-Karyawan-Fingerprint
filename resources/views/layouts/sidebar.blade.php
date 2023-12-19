@@ -7,7 +7,8 @@
             type="button" onclick="toggleNavbar('example-collapse-sidebar')">
             <i class="fas fa-bars"></i>
         </button>
-        <p class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+        <p
+            class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
             Absensi Karyawan
         </p>
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
@@ -48,7 +49,8 @@
 
                 <li class="items-center">
                     <a href="{{ route('user.index') }}"
-                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500 {{ Request::routeIs('user.index') ? 'text-blue-500' : 'text-blueGray-700' }}">
+                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500 
+                        {{ Request::routeIs('user.index') || Request::routeIs('user.filtered') || Request::routeIs('user.create') || Request::routeIs('user.edit') ? 'text-blue-500' : 'text-blueGray-700' }}">
                         <i class="fas fa-user mr-2 text-sm opacity-75"></i>
                         User
                     </a>
@@ -59,6 +61,14 @@
                         class="text-xs uppercase py-3 font-bold block hover:text-blue-500  {{ Request::routeIs('absensi.index') || Request::routeIs('absensi.filtered') ? 'text-blue-500' : 'text-blueGray-700' }}">
                         <i class="fas fa-table mr-2 text-sm opacity-75"></i>
                         Absensi
+                    </a>
+                </li>
+
+                <li class="items-center">
+                    <a href="{{ route('welcome') }}"
+                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500">
+                        <i class="fas fa-home mr-2 text-sm opacity-75"></i>
+                        Home
                     </a>
                 </li>
 

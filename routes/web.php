@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Welcome
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
 // Dashboard
-Route::get('/', [DashboarController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboarController::class, 'index'])->name('dashboard');
 
 // Absensi
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');

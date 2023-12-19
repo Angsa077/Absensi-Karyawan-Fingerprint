@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         $data = [
             'pin' => $request->input('pin'),
-            'name' => $request->input('name'),
+            'name' => strtoupper($request->input('name')),
             'password' => $request->input('password'),
             'privilege' => $request->input('privilege'),
         ];
@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         $data = [
             'pin' => $request->input('pin'),
-            'name' => $request->input('name'),
+            'name' => strtoupper($request->input('name')),
             'password' => $request->input('password'),
             'privilege' => $request->input('privilege'),
         ];
