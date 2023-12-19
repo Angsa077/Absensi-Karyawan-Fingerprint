@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="p-8 rounded border border-gray-200">
-        <form id="addUserForm" action="{{ route('absensi.store') }}" method="POST">
+        <form id="addUserForm" action="{{ route('user.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="pin" class="block text-sm font-medium text-gray-600">PIN</label>
@@ -24,11 +24,10 @@
                 <input type="text" name="privilege" id="privilege" class="mt-1 p-2 w-full border rounded-md">
             </div>
 
-            <!-- Add other form fields as needed -->
-
-            <div class="flex justify-end">
+            <hr>
+            <div class="grid cols-12 mt-5">
                 <button type="submit" id="addUserButton"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded-md text-center">
                     Tambah User
                 </button>
             </div>
@@ -52,7 +51,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('absensi.store') }}',
+                    url: '{{ route('user.store') }}',
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -62,7 +61,7 @@
                             Swal.fire('Success', data.success, 'success');
 
                             // Handle redirection
-                            window.location.href = '{{ route('absensi.index') }}';
+                            window.location.href = '{{ route('user.index') }}';
                         } else if (data.errors) {
                             // Handle errors if needed
                         } else {
