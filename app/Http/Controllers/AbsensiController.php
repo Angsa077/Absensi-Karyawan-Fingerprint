@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use TADPHP\TADFactory;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 
 class AbsensiController extends Controller
 {
@@ -23,12 +21,15 @@ class AbsensiController extends Controller
     public function index()
 
     {
+        $get_att_log = $this->tad->get_att_log(['pin' => 48]);
+        $get_att_log = $get_att_log->to_json();
+
         $get_all_user_info = $this->tad->get_all_user_info();
         $user_info_array = [];
         $user_info_array = $get_all_user_info->to_array();
 
         // $get_fingerprint_algorithm = $this->tad->get_fingerprint_algorithm();
-        return view('absensi.index', compact('user_info_array'));
+        return view('absensi.index', compact('user_info_array', 'get_att_log'));
     }
 
     /**
@@ -54,9 +55,9 @@ class AbsensiController extends Controller
         $result = $this->tad->set_user_info($data);
 
         if ($result) {
-            return response()->json(['success' => 'User deleted successfully']);
+            return response()->json(['success' => 'User Created successfully']);
         } else {
-            return response()->json(['error' => 'Failed to delete user'], 500);
+            return response()->json(['error' => 'Failed to create user'], 500);
         }
     }
 
@@ -72,17 +73,31 @@ class AbsensiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($pin)
     {
-        //
+        $user_info = $this->tad->get_user_info(['pin' => $pin])->to_array();
+        return view('absensi.edit', compact('user_info'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $pin)
     {
-        //
+        $data = [
+            'pin' => $request->input('pin'),
+            'name' => $request->input('name'),
+            'password' => $request->input('password'),
+            'privilege' => $request->input('privilege'),
+        ];
+
+        $result = $this->tad->set_user_info($data);
+
+        if ($result) {
+            return response()->json(['success' => 'User updated successfully']);
+        } else {
+            return response()->json(['error' => 'Failed to update user'], 500);
+        }
     }
 
     /**

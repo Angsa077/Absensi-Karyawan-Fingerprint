@@ -18,8 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('absensi', [AbsensiController::class, 'index'])->name('absensi.index');
-Route::get('absensi/create', [AbsensiController::class, 'create'])->name('absensi.create');
-Route::post('absensi', [AbsensiController::class, 'store'])->name('absensi.store');
-Route::delete('absensi/{pin}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
+Route::resource('absensi', AbsensiController::class);
 

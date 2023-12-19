@@ -3,7 +3,6 @@
 @section('content')
     <div class="p-8 rounded border border-gray-200">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            {{-- {{ print_r($user_info_array, true) }} --}}
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="userTable">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -25,7 +24,8 @@
                             </td>
                             <td scope="col" class="px-6 py-3">{{ $user['Privilege'] ?? '' }}</td>
                             <td scope="col" class="px-6 py-3">
-                                <button class="deleteButton bg-red-600 hover:bg-red-900 text-white p-1 rounded-lg"
+                                <a href="{{ route('absensi.edit', $user['PIN2']) }}" class="bg-yellow-300 hover:bg-yellow-500 text-white p-1 rounded-lg">Edit</a>
+                                <button class="deleteButton bg-red-500 hover:bg-red-700 text-white p-1 rounded-lg"
                                         data-pin="{{ $user['PIN2'] }}">Delete</button>
                             </td>
                         </tr>
@@ -34,7 +34,7 @@
             </table>
             <div class="flex justify-end m-5">
                 <a href="{{ route('absensi.create') }}"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
                     Add User
                 </a>
             </div>
