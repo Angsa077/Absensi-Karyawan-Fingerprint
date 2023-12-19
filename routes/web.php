@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DateController;
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +38,10 @@ Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update')
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/user/filtered', [UserController::class, 'filtered'])->name('user.filtered');
 
+// Template
+Route::get('/template/create', [TemplateController::class, 'create'])->name('template.create');
+Route::post('/template', [TemplateController::class, 'store'])->name('template.store');
+
+// Date
+Route::get('/date/create', [DateController::class, 'create'])->name('date.create');
+Route::post('/date', [DateController::class, 'store'])->name('date.store');

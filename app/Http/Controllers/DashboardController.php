@@ -61,7 +61,7 @@ class DashboardController extends Controller
     public function restart()
     {
         try {
-            restart(); // Panggil fungsi restart dari helpers.php
+            restart();
             return redirect()->route('dashboard')->with('success', 'Successfully initiated restart.');
         } catch (\Exception $e) {
             return redirect()->route('dashboard')->with('error', 'Failed to initiate restart. ' . $e->getMessage());
@@ -71,7 +71,7 @@ class DashboardController extends Controller
     public function poweroff()
     {
         try {
-            poweroff(); // Panggil fungsi poweroff dari helpers.php
+            poweroff();
             return redirect()->route('dashboard')->with('success', 'Successfully initiated poweroff.');
         } catch (\Exception $e) {
             return redirect()->route('dashboard')->with('error', 'Failed to initiate poweroff. ' . $e->getMessage());

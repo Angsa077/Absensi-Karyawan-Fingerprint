@@ -34,6 +34,12 @@ function setUserInfo($data)
     return $tad->set_user_info($data);
 }
 
+function setUserTemplate($data)
+{
+    $tad = getTadInstance();
+    return $tad->set_user_template($data);
+}
+
 function getUserInfo($pin)
 {
     $tad = getTadInstance();
@@ -52,10 +58,10 @@ function getsDate()
     return $tad->get_date();
 }
 
-function getFingerprintAlgorithm()
+function setDate($data)
 {
     $tad = getTadInstance();
-    return $tad->get_fingerprint_algorithm();
+    return $tad->set_date($data);
 }
 
 function restart()
@@ -68,4 +74,10 @@ function poweroff()
 {
     $tad = getTadInstance();
     return $tad->poweroff();
+}
+
+function getUserTemplate()
+{
+    $tad = getTadInstance();
+    return $tad->get_combination();
 }

@@ -53,7 +53,8 @@
                         <tr class="text-center">
                             <td scope="col" class="px-6 py-3">{{ $user['PIN'] ?? '' }}</td>
                             <td scope="col" class="px-6 py-3">{{ $user['PIN2'] ?? '' }}</td>
-                            <td scope="col" class="px-6 py-3">{{ $user['Name'] ?? '' }}</td>
+                            <td scope="col" class="px-6 py-3">{{ is_array($user['Name']) ? '' : htmlspecialchars($user['Name']) }}</td>
+
                             <td scope="col" class="px-6 py-3">{{ is_array($user['Password']) ? '' : '*********' }}
                             </td>
                             <td scope="col" class="px-6 py-3">{{ $user['Privilege'] == 0 ? 'User' : 'Admin' }}</td>

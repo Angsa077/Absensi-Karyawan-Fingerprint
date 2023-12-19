@@ -7,17 +7,17 @@
             type="button" onclick="toggleNavbar('example-collapse-sidebar')">
             <i class="fas fa-bars"></i>
         </button>
-        <p
+        <a href="{{ route('welcome') }}"
             class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
             Absensi Karyawan
-        </p>
+        </a>
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
             id="example-collapse-sidebar">
             <div class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
                 <div class="flex flex-wrap">
                     <div class="w-6/12">
                         <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                            href="{{ route('dashboard') }}">
+                            href="{{ route('welcome') }}">
                             Absensi Karyawan
                         </a>
                     </div>
@@ -38,7 +38,13 @@
             </form>
             <!-- Divider -->
             <hr class="my-4 md:min-w-full" />
+            <!-- Heading -->
+            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Menu
+            </h6>
+            <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+
                 <li class="items-center">
                     <a href="{{ route('dashboard') }}"
                         class="text-xs uppercase py-3 font-bold block hover:text-blue-500 {{ Request::routeIs('dashboard') ? 'text-blue-500' : 'text-blueGray-700' }}"">
@@ -57,6 +63,15 @@
                 </li>
 
                 <li class="items-center">
+                    <a href="{{ route('template.create') }}"
+                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500 
+                        {{ Request::routeIs('template.create') ? 'text-blue-500' : 'text-blueGray-700' }}">
+                        <i class="fas fa-users mr-2 text-sm opacity-75"></i>
+                        Template User
+                    </a>
+                </li>
+
+                <li class="items-center">
                     <a href="{{ route('absensi.index') }}"
                         class="text-xs uppercase py-3 font-bold block hover:text-blue-500  {{ Request::routeIs('absensi.index') || Request::routeIs('absensi.filtered') ? 'text-blue-500' : 'text-blueGray-700' }}">
                         <i class="fas fa-table mr-2 text-sm opacity-75"></i>
@@ -65,13 +80,24 @@
                 </li>
 
                 <li class="items-center">
-                    <a href="{{ route('welcome') }}"
-                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500 ">
-                        <i class="fas fa-home mr-2 text-sm opacity-75"></i>
-                        Home
+                    <a href="{{ route('date.create') }}"
+                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500 
+                        {{ Request::routeIs('date.create') ? 'text-blue-500' : 'text-blueGray-700' }}">
+                        <i class="fas fa-clock mr-2 text-sm opacity-75"></i>
+                        Date
                     </a>
                 </li>
+            </ul>
 
+            <!-- Divider -->
+            <hr class="my-4 md:min-w-full" />
+            <!-- Heading -->
+            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Settings
+            </h6>
+            <!-- Navigation -->
+
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                 <li class="items-center">
                     <form action="{{ route('restart') }}" method="POST" id="restartForm">
                         @csrf
@@ -82,7 +108,7 @@
                         </a>
                     </form>
                 </li>
-            
+
                 <li class="items-center">
                     <form action="{{ route('poweroff') }}" method="POST" id="poweroffForm">
                         @csrf
