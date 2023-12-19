@@ -93,9 +93,9 @@ class AbsensiController extends Controller
         $result = $this->tad->delete_user(['pin' => $pin]);
 
         if ($result) {
-            return Redirect::route('absensi.index')->with('success', 'User deleted successfully');
+            return response()->json(['success' => 'User deleted successfully']);
         } else {
-            return Redirect::route('absensi.index')->with('error', 'Failed to delete user');
+            return response()->json(['error' => 'Failed to delete user'], 500);
         }
     }
 }
