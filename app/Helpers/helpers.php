@@ -45,3 +45,27 @@ function deleteUser($pin)
     $tad = getTadInstance();
     return $tad->delete_user(['pin' => $pin]);
 }
+
+function getsDate()
+{
+    $tad = getTadInstance();
+    return $tad->get_date();
+}
+
+function getFingerprintAlgorithm()
+{
+    $tad = getTadInstance();
+    return $tad->get_fingerprint_algorithm();
+}
+
+function restart()
+{
+    $tad = getTadInstance();
+    return $tad->restart();
+}
+
+function poweroff()
+{
+    $tad = getTadInstance();
+    return $tad->poweroff();
+}

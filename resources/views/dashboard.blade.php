@@ -2,6 +2,18 @@
 
 @section('dashboard')
     <div>
+
+        {{-- Message --}}
+        @if (session('success'))
+            <div class="bg-green-500 border border-green-600 text-white px-4 py-3 rounded-lg relative mb-5" role="alert">
+                {{ session('success') }}
+            </div>
+        @elseif(session('error'))
+            <div class="bg-red-500 border border-red-600 text-white px-4 py-3 rounded-lg relative mb-5" role="alert"">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <!-- Card stats -->
         <div class="flex flex-wrap">
             <div class="w-full lg:w-6/12 xl:w-3/12 px-4">

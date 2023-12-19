@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\DashboarController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Welcome
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 // Dashboard
-Route::get('/dashboard', [DashboarController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'welcome'])->name('welcome');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// setting
+Route::post('/restart', [DashboardController::class, 'restart'])->name('restart');
+Route::post('/poweroff', [DashboardController::class, 'poweroff'])->name('poweroff');
 
 // Absensi
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index');
@@ -35,3 +35,4 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit'
 Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/user/filtered', [UserController::class, 'filtered'])->name('user.filtered');
+

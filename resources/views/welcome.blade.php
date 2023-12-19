@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Home- Absensi Karyawan'])
+@extends('layouts.app', ['title' => 'Home - Absensi Karyawan'])
 
 @section('welcome')
     @php

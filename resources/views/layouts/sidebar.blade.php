@@ -66,10 +66,32 @@
 
                 <li class="items-center">
                     <a href="{{ route('welcome') }}"
-                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500">
+                        class="text-xs uppercase py-3 font-bold block hover:text-blue-500 ">
                         <i class="fas fa-home mr-2 text-sm opacity-75"></i>
                         Home
                     </a>
+                </li>
+
+                <li class="items-center">
+                    <form action="{{ route('restart') }}" method="POST" id="restartForm">
+                        @csrf
+                        <a href="#" onclick="document.getElementById('restartForm').submit()"
+                            class="text-xs uppercase py-3 font-bold block hover:text-blue-500">
+                            <i class="fas fa-sync mr-2 text-sm opacity-75"></i>
+                            Restart
+                        </a>
+                    </form>
+                </li>
+            
+                <li class="items-center">
+                    <form action="{{ route('poweroff') }}" method="POST" id="poweroffForm">
+                        @csrf
+                        <a href="#" onclick="document.getElementById('poweroffForm').submit()"
+                            class="text-xs uppercase py-3 font-bold block hover:text-blue-500">
+                            <i class="fas fa-power-off mr-2 text-sm opacity-75"></i>
+                            Power Off
+                        </a>
+                    </form>
                 </li>
 
             </ul>
