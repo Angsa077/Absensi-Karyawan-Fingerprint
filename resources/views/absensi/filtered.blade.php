@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Data Absensi - Absensi Karyawan'])
+@extends('layouts.app', ['title' => 'Data Absensi - Hasil Filter'])
 
 @section('content')
     {{-- Header --}}
@@ -6,7 +6,7 @@
         <div class="flex flex-wrap items-center">
             <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                 <h3 class="font-semibold text-lg text-blueGray-700 text-center mb-3">
-                    Data Absensi
+                    Hasil Filter Absensi
                 </h3>
             </div>
         </div>
@@ -50,7 +50,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($attendanceRows as $attendance)
+            @foreach ($filteredRows as $attendance)
                 <tr class="text-center">
                     <td class="px-6 py-3">{{ $attendance['PIN'] ?? '' }}</td>
                     <td class="px-6 py-3">{{ $attendance['DateTime'] ?? '' }}</td>
@@ -74,7 +74,6 @@
         </tbody>
     </table>
 @endsection
-
 @push('myscripts')
     <script>
         $(document).ready(function() {

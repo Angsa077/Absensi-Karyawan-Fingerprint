@@ -1,6 +1,15 @@
 @extends('layouts.app', ['title' => 'Edit User - Absensi Karyawan'])
 
 @section('content')
+    <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center">
+            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                <h3 class="font-semibold text-lg text-blueGray-700 text-center mb-3">
+                    Edit Data User
+                </h3>
+            </div>
+        </div>
+    </div>
     <div class="p-8 rounded border border-gray-200">
         <form id="editUserForm" action="{{ route('user.update', $userInfo['Row']['PIN2']) }}" method="POST">
             @csrf
@@ -31,15 +40,17 @@
 
             <div class="mb-4">
                 <label for="privilege" class="block text-sm font-medium text-gray-600">Privilege</label>
-                <input type="text" name="privilege" id="privilege" class="mt-1 p-2 w-full border rounded-md"
-                    value="{{ $userInfo['Row']['Privilege'] }}">
+                <select name="privilege" id="privilege" class="mt-1 p-2 w-full border rounded-md">
+                    <option value="0" @if ($userInfo['Row']['Privilege'] == 0) selected @endif>User</option>
+                    <option value="1" @if ($userInfo['Row']['Privilege'] >= 1) selected @endif>Admin</option>
+                </select>
             </div>
 
             <hr>
             <div class="grid cols-12 mt-5">
                 <button type="submit" id="editUserButton"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded-md text-center">
-                    Update User
+                    Perbarui
                 </button>
             </div>
         </form>

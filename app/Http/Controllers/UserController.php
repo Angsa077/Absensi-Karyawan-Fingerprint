@@ -15,17 +15,38 @@ class UserController extends Controller
         return view('user.index', compact('getAllUserInfo'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    public function filtered(Request $request)
+    {
+        $getAllUserInfo = getAllUserInfo();
+        $filteredUsers = $this->filterUsers($getAllUserInfo['Row'], $request->input('pin2'), $request->input('name'));
+        return view('user.filtered', compact('filteredUsers'));
+    }
+
+
+    private function filterUsers($users, $pin2, $name)
+    {
+        $filteredUsers = $users;
+        if (!empty($pin2)) {
+            $filteredUsers = array_filter($filteredUsers, function ($user) use ($pin2) {
+                return strpos(strtolower($user['PIN2']), strtolower($pin2)) !== false;
+            });
+        }
+        if (!empty($name)) {
+            $filteredUsers = array_filter($filteredUsers, function ($user) use ($name) {
+                return strpos(strtolower($user['Name']), strtolower($name)) !== false;
+            });
+        }
+        return array_values($filteredUsers);
+    }
+
+
     public function create()
     {
         return view('user.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $data = [
@@ -44,26 +65,14 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($pin)
     {
         $userInfo = getUserInfo($pin);
         return view('user.edit', compact('userInfo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, $pin)
     {
         $data = [
@@ -82,9 +91,7 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($pin)
     {
         $result = deleteUser($pin);

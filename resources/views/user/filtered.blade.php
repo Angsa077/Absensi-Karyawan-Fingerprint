@@ -49,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($getAllUserInfo['Row'] as $user)
+                    @foreach ($filteredUsers as $user)
                         <tr class="text-center">
                             <td scope="col" class="px-6 py-3">{{ $user['PIN'] ?? '' }}</td>
                             <td scope="col" class="px-6 py-3">{{ $user['PIN2'] ?? '' }}</td>
@@ -96,7 +96,6 @@
 @push('myscripts')
     <script>
         $(document).ready(function() {
-
             // Function to handle user deletion
             function deleteUser(pin) {
                 $.ajax({
